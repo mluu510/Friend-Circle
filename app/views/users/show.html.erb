@@ -1,0 +1,7 @@
+<h1><%= @user.email %> show page</h1>
+<h2> Friends </h2>
+<ul>
+  <% @friends.each do |friend| %>
+    <li><%= friend.email %></li>
+  <% end %>
+</ul>
