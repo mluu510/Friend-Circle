@@ -6,6 +6,7 @@
 #  owner_id   :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
+#  name       :string(255)
 #
 
 class FriendCircle < ActiveRecord::Base
@@ -31,5 +32,10 @@ class FriendCircle < ActiveRecord::Base
     :friends,
     :through => :friendships,
     :source => :friend
+  )
+
+  has_many(
+    :post_shares,
+    :dependent => :destroy
   )
 end

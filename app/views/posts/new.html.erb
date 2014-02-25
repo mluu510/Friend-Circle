@@ -1,0 +1,31 @@
+<h1>Create a Post </h1>
+
+<form action="<%= user_posts_url %>" method="POST">
+  <input type='hidden' name='authenticity_token'
+    value='<%= form_authenticity_token %>'>
+
+    <label>Select a circle:</label>
+
+    Select Your Circles:
+    <% @circles.each do |circle| %>
+      <label>
+        <%= circle.id %>
+        <input type="checkbox" name="post[circle_ids][]"
+                value='<%= circle.id %>'>
+      </label>
+    <% end %>
+
+    <label>Body:
+      <textarea name="post[body]"></textarea>
+    </label>
+
+    <% @post.links.each_with_index do |link, idx| %>
+      <label>
+        Link <%= idx %>
+        <input type='text' name='links[<%= idx %>][content]' />
+      </label>
+      <br />
+    <% end %>
+
+    <button>submit</button>
+</form>

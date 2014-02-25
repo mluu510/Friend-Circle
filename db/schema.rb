@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225005747) do
+ActiveRecord::Schema.define(version: 20140225011300) do
 
   create_table "friend_circle_memberships", force: true do |t|
     t.integer  "friend_id"
@@ -31,6 +31,34 @@ ActiveRecord::Schema.define(version: 20140225005747) do
   end
 
   add_index "friend_circles", ["owner_id"], name: "index_friend_circles_on_owner_id"
+
+  create_table "links", force: true do |t|
+    t.integer  "post_id",    null: false
+    t.string   "content",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "links", ["post_id"], name: "index_links_on_post_id"
+
+  create_table "post_shares", force: true do |t|
+    t.integer  "post_id",    null: false
+    t.integer  "circle_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_shares", ["circle_id"], name: "index_post_shares_on_circle_id"
+  add_index "post_shares", ["post_id"], name: "index_post_shares_on_post_id"
+
+  create_table "posts", force: true do |t|
+    t.string   "body",       null: false
+    t.integer  "author_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["author_id"], name: "index_posts_on_author_id"
 
   create_table "users", force: true do |t|
     t.string   "email"

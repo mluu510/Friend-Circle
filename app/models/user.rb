@@ -13,7 +13,7 @@
 
 class User < ActiveRecord::Base
 
-  has_many :friend_circle, :foreign_key => :owner_id, :dependent => :destroy
+  has_many :friend_circles, :foreign_key => :owner_id, :dependent => :destroy
   has_many :friendships, :through => :friend_circle, :source => :friendships
   has_many :friends, :through => :friendships, :source => :friend
 
